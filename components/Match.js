@@ -15,7 +15,7 @@ export default function Match({slug,words}){
     if(p.id===c.id&&p.t!==c.t){setDone([...done,c.id]);setMsg('Cocok! ✓')}else{setMiss(miss+1);setMsg('Belum cocok, coba lagi ✗')}
     setSel(null);
   };
-  return <section className="card" style={{'--c':'#FF5D8F'}}>
+  return <section className="card" style={{'--c':'#E89B5B'}}>
     <h3>Cocokkan kata dan gambar</h3>
     <div className="opts">{cards.map((c,i)=><button key={i} className={'opt'+(done.includes(c.id)?' ok':sel===i?' pick':'')} onClick={()=>tap(c,i)}>
       {c.t==='ar'?<span className="ar big" dir="rtl" lang="ar">{c.l}</span>:c.l}{done.includes(c.id)?' ✓':''}</button>)}</div>

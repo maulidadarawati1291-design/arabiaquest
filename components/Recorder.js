@@ -12,7 +12,7 @@ export default function Recorder({teacher,words=pool}){
     m.start();mr.current=m;setRec(true);setErr('');
   }catch{setErr('Mikrofon belum bisa dipakai. Tidak apa-apa: dengarkan contoh lalu tirukan bersama gurumu.')}};
   const stop=()=>{mr.current?.stop();setRec(false)};
-  return <section className="card" style={{'--c':'#2EC4B6'}}>
+  return <section className="card" style={{'--c':'#BFE7EA'}}>
     <h3>{teacher?'Rekam suara model (guru)':'🎙️ Rekam Suaraku'}</h3>
     <select value={w.id} onChange={e=>{setW(words.find(x=>x.id===e.target.value));setUrl('')}} aria-label="Pilih kata">
       {words.map(x=><option key={x.id} value={x.id}>{x.id}</option>)}</select>

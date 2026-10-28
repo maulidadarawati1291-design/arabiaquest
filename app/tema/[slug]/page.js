@@ -9,7 +9,7 @@ export default function Tema({params}){
   const t=themes.find(x=>x.slug===params.slug);if(!t)notFound();
   return <><h1>{t.icon} {t.title}</h1>
     <h2>Kosakata</h2>
-    <div className="grid">{t.words.map(x=><div className="card" key={x.id} style={{"--c":"#3A86FF"}}>
+    <div className="grid">{t.words.map(x=><div className="card" key={x.id} style={{"--c":"#D46743"}}>
       <span className="emo">{x.e}</span><p className="ar big" dir="rtl" lang="ar">{x.ar}</p><p>{x.id}</p><Speak text={x.ar} name={x.id}/></div>)}</div>
     <h2>Latihan</h2>
     <Quiz slug={t.slug} mode="arti" words={t.words} pool={pool}/>
