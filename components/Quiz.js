@@ -17,7 +17,7 @@ export default function Quiz({slug,mode,words,pool}){
   return <section className="card">
     <h3>{title} ({i+1}/{qs.length})</h3>
     {mode==='arti'?<p className="ar big" dir="rtl" lang="ar">{q.a.ar}</p>:null}
-    <Speak text={q.a.ar}/>
+    <Speak text={q.a.ar} name={q.a.id}/>
     <div className="opts">{q.o.map(o=>{
       const st=!pick?'':o.id===q.a.id?'ok':o===pick?'no':'';
       return <button key={o.id} className={'opt '+st} onClick={()=>choose(o)} aria-label={o.id}>

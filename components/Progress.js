@@ -2,9 +2,12 @@
 import {useEffect,useState} from 'react';
 import {load} from '@/lib/progress';
 import {themes} from '@/lib/data';
+const M=[['arti','Pilih artinya'],['dengar','Dengarkan dan tebak'],['cocok','Cocokkan gambar']];
+const st=r=>!r?'belum dicoba':'⭐'.repeat(r.score>=r.total?3:r.score/r.total>=.6?2:1)+` (${r.score}/${r.total})`;
 export default function Progress(){
   const [d,setD]=useState({});useEffect(()=>setD(load()),[]);
-  return <div className="grid">{themes.map(t=>{const a=d[t.slug+':arti'],b=d[t.slug+':dengar'];
-    return <div className="card" key={t.slug}><h3>{t.icon} {t.title}</h3>
-    <p>Pilih artinya: {a?`${a.score}/${a.total}`:'belum dicoba'}</p><p>Dengarkan dan tebak: {b?`${b.score}/${b.total}`:'belum dicoba'}</p></div>})}</div>;
+  const stars=Object.values(d).reduce((s,r)=>s+(r.score>=r.total?3:r.score/r.total>=.6?2:1),0);
+  return <><p className="bubble">Bintangmu: <b>{stars} ⭐</b></p><div className="grid">{themes.map((t,i)=>
+    <div className="card" key={t.slug} style={{'--c':['#3A86FF','#FF5D8F','#FFB703','#2EC4B6','#8338EC','#FB5607'][i%6]}}>
+      <h3>{t.icon} {t.title}</h3>{M.map(([k,n])=><p key={k}>{n}: {st(d[t.slug+':'+k])}</p>)}</div>)}</div></>;
 }
